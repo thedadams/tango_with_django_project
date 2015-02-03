@@ -4,5 +4,8 @@ from rango.models import Category, Page
 class PageAdmin(admin.ModelAdmin):
     list_display = ["title", "category", "url"]
 
-admin.site.register(Category)
+class CategroyAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug" : ("name",)}
+
+admin.site.register(Category, CategroyAdmin)
 admin.site.register(Page, PageAdmin)
