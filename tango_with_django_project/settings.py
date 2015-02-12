@@ -22,6 +22,9 @@ TEMPLATE_DIRS = [
     TEMPLATE_PATH,
 ]
 
+# Login redirect
+LOGIN_URL = '/rango/login/'
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
