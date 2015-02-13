@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-{% load staticfiles %}
-<html>
-<head>
-    <title>About</title>
-</head>
+{%extends "base.html"%}
 
-<body>
+{% load staticfiles %}
+{%block title%}About{%endblock%}
+
+{%block body_block%}
     <h1>All About ME</h1>
     <p>This page is all about {{name}}!!</p>
-    <a href="/rango/">Back to the main page</a><br>
     <img src="{%static 'images/thedadams.png'%}" alt="My Cartoon Face"/>
-</body>
-</html>
+{%endblock%}
