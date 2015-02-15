@@ -4,8 +4,10 @@
 {%block title%}About{%endblock%}
 
 {%block body_block%}
+<div class="page-header">
     <h1>All About ME</h1>
-    <p>This page is all about {{name}}!!</p>
-    <img src="{%static 'images/thedadams.png'%}" alt="My Cartoon Face"/>
-    <p>You have visited this site {{visits}} time{% if visits > 1%}s{%endif%}.</p>
+</div>
+<p>This page is all about {{name}}!!</p>
+<img src="{%static 'images/thedadams.png'%}" alt="My Cartoon Face"/>
+<p>You have visited this site {{visits}} time{% if visits > 1%}s{%endif%}.</p>
 {%endblock%}
