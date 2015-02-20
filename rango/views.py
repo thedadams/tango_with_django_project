@@ -58,6 +58,7 @@ def category(request, category_name_slug):
             # Run our Bing function to get the results list!
             result_list = run_query(query)
             context_dict["result_list"] = result_list
+            context_dict["query"] = query
     try:
         # Can we find a category name slug with the given name?
         # If we can't, the .get() method raises a DoesNotExist exception.
@@ -67,7 +68,7 @@ def category(request, category_name_slug):
 
         # Retrieve all of the associated pages.
         # Note that filter returns >= 1 model instance.
-        pages = Page.objects.filter(category=category)
+        pages = Page.objects.filter(category=category).order_by("-views")
 
         # Adds our results list to the template context under name pages.
         context_dict['pages'] = pages
