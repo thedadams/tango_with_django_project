@@ -51,7 +51,13 @@ def about(request):
 def category(request, category_name_slug):
     # Create a context dictionary which we can pass to the template rendering engine.
     context_dict = {}
-
+    if request.method == 'POST':
+        result_list = []
+        query = request.POST['query'].strip()
+        if query:
+            # Run our Bing function to get the results list!
+            result_list = run_query(query)
+            context_dict["result_list"] = result_list
     try:
         # Can we find a category name slug with the given name?
         # If we can't, the .get() method raises a DoesNotExist exception.
@@ -147,3 +153,22 @@ def search(request):
             # Run our Bing function to get the results list!
             result_list = run_query(query)
     return render(request, 'rango/search.html', {'result_list': result_list})
+
+
+
+def track_url(request):
+    if request.method == 'GET':
+        if 'page_id' in request.GET:
+            page_id = request.GET['page_id']
+            try:
+                page = Page.objects.get(id=page_id)
+                page.views += 1
+                page.save()
+                return HttpResponseRedirect(page.url)
+            except Page.DoesNotExist:
+                return HttpResponseRedirect("/search/")
+                pass
+    return HttpResponseRedirect("/rango/")
+
+
+
